@@ -22,7 +22,7 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 function createWindow() {
   win = new BrowserWindow({
     width: 350,
-    height: 500,
+    height: 700,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -41,7 +41,7 @@ function createWindow() {
     win.loadFile(path.join(process.env.DIST, 'index.html'))
   }
 
-  //Menu.setApplicationMenu(menu);
+  //win.webContents.openDevTools()
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
