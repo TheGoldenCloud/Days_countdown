@@ -1,6 +1,6 @@
 import { app, BrowserWindow,Menu } from 'electron'
 import path from 'node:path'
-import menu from './menubar.ts'
+//import menu from './menubar.ts'
 
 // The built directory structure
 //
@@ -21,6 +21,8 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 
 function createWindow() {
   win = new BrowserWindow({
+    width: 350,
+    height: 500,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -39,7 +41,7 @@ function createWindow() {
     win.loadFile(path.join(process.env.DIST, 'index.html'))
   }
 
-  Menu.setApplicationMenu(menu);
+  //Menu.setApplicationMenu(menu);
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
