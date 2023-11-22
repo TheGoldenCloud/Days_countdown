@@ -11,22 +11,8 @@ let Input = () => {
     let [message,setMessage] = useState('');
     let [pickedDate,setpickedDate] = useState('');
     let [showWarning,setShowWarning] = useState(Boolean);
-
     let [warningType,setWarningType] = useState('');
-
     let [listEvents,setListEvents] = useState<OutputItem[]>([]);
-
-    // let typeWarning = (warning: any) => {
-    //   switch(warning){
-    //     case 'noLabel':
-    //       setWarningType('You forgot event NAME');
-    //     break;
-    //     case 'noDate':
-    //       setWarningType('You forgot event DATE');
-    //     break;
-    //   }
-    // }
-
 
     let addEvent = () => {
       if(message === ''){
@@ -43,13 +29,8 @@ let Input = () => {
         if(date1 < new Date(pickedDate)){//date1.getDate() < date2.getDate() ???
             let diffTime = Math.abs(date2.getTime() - date1.getTime());
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
             setShowWarning(false);
-
-            // let data_ : listItem = {
-            //   message: message,
-            //   diffDays: diffDays
-            // }
-
             setListEvents([...listEvents,{ message,diffDays }]);
     
             // let data = {
@@ -57,11 +38,14 @@ let Input = () => {
             //     days: date2.getDate()
             // }
     
-            let data = {
-                msg: message,
-                days: pickedDate
-            }
+            // let data = {
+            //     msg: message,
+            //     days: pickedDate
+            // }
     
+            const sendMessageToMain = () => {
+              ipcRenderer.send('messageFromRenderer', 'Hello from renderer!');
+            };
             //window.Bridge.sendSubmit(data); HERE
     
         }else{
@@ -69,9 +53,6 @@ let Input = () => {
             setShowWarning(true);
         }
       }
-
-      
-
     }
 
   return (
