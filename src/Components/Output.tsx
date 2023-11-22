@@ -1,8 +1,21 @@
 import React from 'react'
 
-let Output = () => {
+type data = {
+    message: string,
+    diffDays: number
+}
+
+let Output = ({ message, diffDays }: data) => {
   return (
-    <div id = "outputData" />
+    <div className='event'>
+        <div className='alert alert-primary' role="alert">
+            <div className="d-flex">
+                <div className="me-auto">{message}</div>
+                <div className='p'>{diffDays} days</div>
+            </div>
+        </div>
+    </div>
+    // <div id = "outputData" />
   )
 }
 
