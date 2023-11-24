@@ -1,10 +1,13 @@
 import React,{ useState } from 'react'
 import Output from './Output'
+//import { v4 as uuidv4 } from 'uuid'; Adduj id svakom output elementu ili ovako ili drugacije
 
 type OutputItem = {
     message: string,
     diffDays: number
 }
+
+let window_ = (window as any);
 
 let Input = () => {
 
@@ -42,11 +45,13 @@ let Input = () => {
             //     msg: message,
             //     days: pickedDate
             // }
+
+            let data = {
+                msg: message,
+                days: diffDays
+            }
     
-            const sendMessageToMain = () => {
-              ipcRenderer.send('messageFromRenderer', 'Hello from renderer!');
-            };
-            //window.Bridge.sendSubmit(data); HERE
+            window_.rendererFunctions.ipcRenderer.send('eventData', data);
     
         }else{
             setWarningType('Enter date that will come!!!');
@@ -55,7 +60,7 @@ let Input = () => {
       }
     }
 
-  return (
+  return
     <>
         <div className="inputData mx-2">
             <label>Enter message:</label>
@@ -67,7 +72,7 @@ let Input = () => {
         <button type="button" className="btn btn-primary mx-2 my-2" onClick={()=>addEvent()}>Add reminder</button>
 
         { showWarning ? <p className="text-danger mx-2">{warningType}</p> : '' }
-
+      
         <hr />
 
         {  listEvents.map((o)=>(<Output message = {o.message} diffDays = {o.diffDays}/>)) }
