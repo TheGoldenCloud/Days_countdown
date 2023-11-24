@@ -60,7 +60,7 @@ let Input = () => {
       }
     }
 
-  return
+  return (
     <>
         <div className="inputData mx-2">
             <label>Enter message:</label>
