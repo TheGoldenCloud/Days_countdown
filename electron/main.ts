@@ -1,4 +1,4 @@
-import { app, BrowserWindow,ipcMain } from 'electron';
+import { app, BrowserWindow,ipcMain, ipcRenderer } from 'electron';
 import path from 'node:path';
 //import menu from './menubar.ts'
 
@@ -15,25 +15,17 @@ function createWindow() {
     height: 700,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
     webPreferences: {
-      // nodeIntegration: true,
+      nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   })
 
-  // Test active push message to Renderer-process.
+  // 
   win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', (new Date).toLocaleString());
-    win?.webContents.send('main-process-message1', "Hello world");
-   
-    
-    // ipcMain.on('fromclient-tommain', (event, arg) => {
-    //   console.log(arg);
-    // });
 
-    ipcMain.on('messageFromRenderer', (event, arg) => {
-      console.log('Message from renderer:', arg);
-      // Do something with the message, if needed
-    });
+    ipcMain.on('eventData',(event,data)=>{
+      console.log(data);
+    })
     
   })
 
