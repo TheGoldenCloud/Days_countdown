@@ -25,9 +25,11 @@ function createWindow() {
     //   console.log(data);
     // })
 
+    
+
     ipcMain.on('eventData', (event, data) => {
   
-      fs.readFile('./electron/data.json', 'utf8', function readFileCallback(err, fileData){
+      fs.readFile('./public/data.json', 'utf8', function readFileCallback(err, fileData){
         if (err){
             console.log(err);
         } else {
@@ -38,7 +40,7 @@ function createWindow() {
           
           let json = JSON.stringify(obj);
           
-          fs.writeFile('./electron/data.json', json, 'utf8', (err) => {
+          fs.writeFile('./public/data.json', json, 'utf8', (err) => {
               if (err) throw err;
               console.log('The data has been appended to the file!');
           });
