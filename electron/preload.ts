@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import data from './data.json'
+import data from '../public/data.json'
 
 contextBridge.exposeInMainWorld('rendererFunctions', {
   ipcRenderer: ipcRenderer
@@ -88,11 +88,11 @@ function useLoading() {
 
 // ----------------------------------------------------------------------
 
-const { appendLoading, removeLoading } = useLoading()
-domReady().then(appendLoading)
+// const { appendLoading, removeLoading } = useLoading()
+// domReady().then(appendLoading)
 
-window.onmessage = ev => {
-  ev.data.payload === 'removeLoading' && removeLoading()
-}
+// window.onmessage = ev => {
+//   ev.data.payload === 'removeLoading' && removeLoading()
+// }
 
-setTimeout(removeLoading, 4999)
+// setTimeout(removeLoading, 4999)
