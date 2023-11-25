@@ -1,14 +1,13 @@
 import React from 'react'
 
 type data = {
-    key: string,
     message: string,
     diffDays: number
 }
 
-let Output = ({ key,message, diffDays }: data) => {
+let Output = ({ message, diffDays }: data) => {
   return (
-    <div className={key + ' mx-2'}>
+    <div className='mx-2'>
         <div className='alert alert-primary' role="alert">
             <div className="d-flex">
                 <div className="me-auto">{message}</div>
@@ -16,7 +15,6 @@ let Output = ({ key,message, diffDays }: data) => {
             </div>
         </div>
     </div>
-    // <div id = "outputData" />
   )
 }
 
