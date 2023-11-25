@@ -1,28 +1,15 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import data from './data.json'
 
 contextBridge.exposeInMainWorld('rendererFunctions', {
   ipcRenderer: ipcRenderer
 })
 
-// function withPrototype(obj: Record<string, any>) {
-//   const protos = Object.getPrototypeOf(obj)
+contextBridge.exposeInMainWorld('dataHistory', {
+  data: data
+})
 
-//   for (const [key, value] of Object.entries(protos)) {
-//     if (Object.prototype.hasOwnProperty.call(obj, key)) continue
 
-//     if (typeof value === 'function') {
-//       // Some native APIs, like `NodeJS.EventEmitter['on']`, don't work in the Renderer process. Wrapping them into a function.
-//       obj[key] = function (...args: any) {
-//         return value.call(obj, ...args)
-//       }
-//     } else {
-//       obj[key] = value
-//     }
-//   }
-//   return obj
-// }
-
-// --------- Preload scripts loading ---------
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {
     if (condition.includes(document.readyState)) {
@@ -50,12 +37,6 @@ const safeDOM = {
   },
 }
 
-/**
- * https://tobiasahlin.com/spinkit
- * https://connoratherton.com/loaders
- * https://projects.lukehaas.me/css-loaders
- * https://matejkustec.github.io/SpinThatShit
- */
 function useLoading() {
   const className = `loaders-css__square-spin`
   const styleContent = `

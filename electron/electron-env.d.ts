@@ -21,6 +21,10 @@ declare namespace NodeJS {
   }
 }
 
+// declare module 'uuid'{
+//   export function uuidv4(): string
+// }
+
 // Used in Renderer process, expose in `preload.ts`
 interface Window {
   ipcRenderer: import('electron').IpcRenderer

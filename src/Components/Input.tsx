@@ -1,8 +1,9 @@
 import React,{ useState } from 'react'
 import Output from './Output'
-//import { v4 as uuidv4 } from 'uuid'; Adduj id svakom output elementu ili ovako ili drugacije
+import { v4 as uuidv4 } from 'uuid'; //Adduj id svakom output elementu ili ovako ili drugacije
 
 type OutputItem = {
+    id:string,
     message: string,
     diffDays: number
 }
@@ -16,6 +17,44 @@ let Input = () => {
     let [showWarning,setShowWarning] = useState(Boolean);
     let [warningType,setWarningType] = useState('');
     let [listEvents,setListEvents] = useState<OutputItem[]>([]);
+
+
+    // let conversion = () => {
+    //   let date1 = new Date();
+    //   let filteredEvents = [];
+    
+    //   for (let i = 0; i < events.events.length; i++) {    //FILTRIRA TAKO DA IH BRISE
+    //       if(date1 < new Date(events.events[i].days)){
+    //           let obj = {
+    //               msg: events.events[i].msg,
+    //               days: events.events[i].days
+    //           }
+    //           filteredEvents.push(obj);   //NEW FILTERED LIST
+    //       }
+    //   }
+      
+    //   for (let i = 0; i < filteredEvents.length; i++) {
+    
+    //       let date2 = new Date(filteredEvents[i].days);
+    //       let diffTime = Math.abs(date2.getTime() - date1.getTime());
+    //       let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    //       eventPlaceholder.innerHTML += `<div id = 'event'>
+    //                                          <div class='alert alert-info' role="alert" onclick = "disappear()">
+    //                                              <div class="d-flex">
+    //                                                  <div class="me-auto">${filteredEvents[i].msg}</div>
+    //                                                  <div class='p'>${diffDays} days</div>
+    //                                              </div>
+    //                                          </div>
+    //                                      </div>`;
+    //   }
+    
+    //   // window.Bridge.sendSubmit(filteredEvents); //SALJE LISTU
+    
+    //   //return diffDays;
+    // }
+    
+    //conversion();
 
     let addEvent = () => {
       if(message === ''){
@@ -32,21 +71,13 @@ let Input = () => {
         if(date1 < new Date(pickedDate)){//date1.getDate() < date2.getDate() ???
             let diffTime = Math.abs(date2.getTime() - date1.getTime());
             let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            let id = uuidv4();
 
             setShowWarning(false);
-            setListEvents([...listEvents,{ message,diffDays }]);
-    
-            // let data = {
-            //     msg: message,
-            //     days: date2.getDate()
-            // }
-    
-            // let data = {
-            //     msg: message,
-            //     days: pickedDate
-            // }
+            setListEvents([...listEvents,{ id,message,diffDays }]);
 
             let data = {
+                id:id,
                 msg: message,
                 days: diffDays
             }
@@ -75,7 +106,7 @@ let Input = () => {
       
         <hr />
 
-        {  listEvents.map((o)=>(<Output message = {o.message} diffDays = {o.diffDays}/>)) }
+        {  listEvents.map((o)=>(<Output key={o.id} message = {o.message} diffDays = {o.diffDays}/>)) }
     </>
   )
 }
