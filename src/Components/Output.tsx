@@ -1,8 +1,8 @@
 import React from 'react'
 
 type data = {
-    message: string,
-    diffDays: number
+    message: string | undefined,
+    diffDays: number | undefined
 }
 
 let Output = ({ message, diffDays }: data) => {
