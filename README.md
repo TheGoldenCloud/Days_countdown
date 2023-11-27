@@ -48,7 +48,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-<img src="/public/app.svg" alt="appImg" width="310" height="500">
+<img src="/public/app.png" alt="appImg" width="300" height="500">
 
 This project is small and simple, created for like desktop widget that can be used for reminding yourself occasionally. All data are stored in json file
 that is in the app. No need for deleting data because when the time passes app will delete all events that passed.
@@ -85,7 +85,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 2. Get into app file
    ```sh
-   cd Days_to_come
+   cd eventDays
    ```
 3. Install NPM packages
    ```sh
