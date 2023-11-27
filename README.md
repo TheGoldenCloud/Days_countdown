@@ -91,7 +91,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Svelte][Svelte.dev]][Svelte-url]
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![My Skills](https://skillicons.dev/icons?i=react,wasm)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
